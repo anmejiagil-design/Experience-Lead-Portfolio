@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wolters Kluwer, Ana María Mejía Gil</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --accent: #1D9E75; --accent-light: #E1F5EE; --accent-dark: #0F6E56;
+    --nav-bg: #1E1E1A; --ink: #1a1a18; --ink-muted: #4a4a46; --ink-faint: #9a9994;
+    --surface: #F5F5F2; --white: #ffffff;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --border: rgba(0,0,0,0.08);
+    --indigo: #4F6FAE;
+    --indigo-light: #EBF0F9;
+    --indigo-dark: #2E4A82;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--surface); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+  /* NAV */
+  .nav-wrap { position: fixed; top: 1.25rem; left: 0; right: 0; z-index: 100; display: flex; justify-content: center; pointer-events: none; }
+  nav { pointer-events: all; background: var(--nav-bg); border-radius: 100px; padding: 0 1.75rem; display: inline-flex; align-items: center; gap: 2rem; height: 50px; box-shadow: 0 4px 24px rgba(0,0,0,0.18); }
+  .nav-logo { font-family: var(--serif); font-size: 15px; color: #fff; text-decoration: none; padding-right: 1.5rem; border-right: 0.5px solid rgba(255,255,255,0.15); white-space: nowrap; }
+  .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+  .nav-links a { font-size: 12.5px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta { font-size: 12px; font-weight: 500; color: var(--accent-dark); background: var(--accent-light); padding: 7px 16px; border-radius: 100px; text-decoration: none; }
+
+  /* HERO */
+  .project-hero { padding: 7rem 2rem 2.5rem; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); text-decoration: none; margin-bottom: 2.5rem; transition: color 0.2s; }
+  .back-link:hover { color: var(--accent); }
+  .back-link svg { transition: transform 0.2s; }
+  .back-link:hover svg { transform: translateX(-3px); }
+  .industry-tag { display: inline-flex; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-dark); background: var(--accent-light); padding: 4px 10px; border-radius: 2px; margin-bottom: 1.25rem; }
+  .project-title { font-family: var(--serif); font-size: clamp(2.8rem, 6vw, 4.5rem); line-height: 1.0; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1rem; }
+  .project-title em { font-style: italic; color: var(--indigo); }
+  .project-period { font-size: 14px; color: var(--ink-faint); font-weight: 300; }
+  .hero-meta { display: flex; flex-direction: column; gap: 1.5rem; }
+  .meta-label { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 4px; }
+  .meta-value { font-size: 14px; font-weight: 300; color: var(--ink-muted); line-height: 1.5; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .tag { font-size: 11px; color: var(--ink-muted); border: 0.5px solid var(--border); padding: 4px 10px; border-radius: 100px; background: var(--white); }
+
+  /* DIVIDER */
+  .divider { max-width: 1200px; margin: 0 auto 2.5rem; padding: 0 2rem; display: flex; align-items: center; gap: 1.25rem; }
+  .divider-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); white-space: nowrap; font-weight: 500; }
+  .divider-line { flex: 1; height: 0.5px; background: var(--border); }
+
+  /* CONTENT */
+  .content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+  /* CHALLENGE */
+  .case-block { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 0.5px solid var(--border); }
+  .case-block:last-of-type { border-bottom: none; }
+  .block-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 10px; }
+  .block-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); }
+  .block-title { font-family: var(--serif); font-size: 2rem; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.5rem; line-height: 1.1; }
+  .block-text { font-size: 16px; font-weight: 300; line-height: 1.8; color: var(--ink-muted); margin-bottom: 1rem; }
+
+  /* WHAT I DID */
+  .did-list { display: flex; flex-direction: column; }
+  .did-item { display: grid; grid-template-columns: 48px 1fr; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 0.5px solid var(--border); }
+  .did-item:last-child { border-bottom: none; }
+  .did-number { font-family: var(--serif); font-size: 1.75rem; color: var(--ink-faint); font-style: italic; line-height: 1; padding-top: 2px; }
+  .did-content h3 { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 0.4rem; }
+  .did-content p { font-size: 14px; font-weight: 300; color: var(--ink-muted); line-height: 1.7; }
+
+  /* EXPAND */
+  .did-expand { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 0.5px solid var(--border); }
+  .did-expand.open { display: block; }
+  .did-expand p { font-size: 13.5px; font-weight: 300; color: var(--ink-muted); line-height: 1.75; margin-bottom: 0.75rem; }
+  .did-expand p:last-child { margin-bottom: 0; }
+  .did-expand .request-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); border: none; background: var(--accent-light); padding: 6px 14px; border-radius: 100px; text-decoration: none; margin-top: 0.5rem; transition: background 0.2s; }
+  .did-expand .request-btn:hover { background: #b8ecd8; }
+  .did-expand ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 0.75rem;
+  }
+  .did-expand ul li {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+  .toggle-btn { display: inline-flex; align-items: center; gap: 6px; margin-top: 0.75rem; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); background: none; border: none; cursor: pointer; padding: 0; font-family: var(--sans); }
+  .toggle-btn .toggle-icon { transition: transform 0.25s; display: inline-block; }
+  .toggle-btn.open .toggle-icon { transform: rotate(45deg); }
+  .expand-img { 
+    width: 100%; max-width: 100%; border-radius: 8px; 
+    margin-top: 1rem; border: 0.5px solid var(--border); 
+    display: block; object-fit: cover;
+  }
+  .expand-img-caption { 
+    font-size: 11px; color: var(--ink-faint); 
+    margin-top: 0.5rem; font-weight: 300; margin-bottom: 0.5rem; 
+  }
+  .img-row { 
+    display: grid; grid-template-columns: 1fr 1fr; 
+    gap: 8px; margin-top: 1rem; 
+  }
+  .img-row img { 
+    width: 100%; aspect-ratio: 16/10; 
+    object-fit: cover; object-position: top;
+    border-radius: 8px; border: 0.5px solid var(--border); 
+    display: block;
+  }
+
+  /* IMPACT */
+  .impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 0.5px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .impact-card { background: var(--white); padding: 1.75rem; }
+  .impact-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+  .impact-card h3 { font-family: var(--serif); font-size: 1.1rem; color: var(--indigo-dark); margin-bottom: 0.5rem; line-height: 1.2; }
+  .impact-card p { font-size: 13px; font-weight: 300; color: var(--ink-muted); line-height: 1.6; }
+
+  /* NDA */
+  .nda-note { display: flex; align-items: flex-start; gap: 10px; background: var(--accent-light); border-radius: 8px; padding: 1rem 1.25rem; margin-top: 1.5rem; }
+  .nda-note p { font-size: 13px; color: var(--accent-dark); font-weight: 300; line-height: 1.5; }
+  .nda-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 5px; }
+
+  /* NEXT */
+  .next-project { border-top: 0.5px solid var(--border); padding: 3rem 2rem 4rem; max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+  .next-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); font-weight: 500; margin-bottom: 0.5rem; }
+  .next-title { font-family: var(--serif); font-size: 1.5rem; letter-spacing: -0.02em; color: var(--ink); }
+  .next-arrow { width: 44px; height: 44px; border: 0.5px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: background 0.2s, border-color 0.2s; flex-shrink: 0; }
+  .next-arrow:hover { background: var(--accent-light); border-color: var(--accent); }
+
+  /* FOOTER */
+  footer { border-top: 0.5px solid var(--border); padding: 2rem 2rem; max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-name { font-family: var(--serif); font-size: 15px; color: var(--ink); }
+  .footer-right { display: flex; align-items: center; gap: 1.75rem; flex-wrap: wrap; }
+  .footer-right a, .footer-right span { font-size: 13px; color: var(--ink-muted); text-decoration: none; font-weight: 300; }
+  .footer-right a:hover { color: var(--accent); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .project-hero { animation: fadeUp 0.65s ease both; }
+
+  @media (max-width: 680px) {
+    .nav-links { display: none; }
+    nav { gap: 1.25rem; padding: 0 1.25rem; }
+    .project-hero { grid-template-columns: 1fr; gap: 2rem; padding: 7rem 1.5rem 2rem; }
+    .content { padding: 0 1.5rem; }
+    .divider { padding: 0 1.5rem; }
+    .impact-grid { grid-template-columns: 1fr; }
+    .next-project { padding: 2rem 1.5rem 3rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-wrap">
+  <nav>
+    <a href="portfolio.html" class="nav-logo">Ana María Mejía</a>
+    <ul class="nav-links">
+      <li><a href="portfolio.html#work">Work</a></li>
+      <li><a href="about.html">About &amp; CV</a></li>
+    </ul>
+    <a href="mailto:anmejiagil@gmail.com" class="nav-cta">Email me</a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<div class="project-hero">
+  <div>
+    <a href="portfolio.html" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      All projects
+    </a>
+    <span class="industry-tag">Finance</span>
+    <h1 class="project-title">Wolters<br><em>Kluwer</em></h1>
+    <p class="project-period">Globant · 2024</p>
+  </div>
+  <div class="hero-meta">
+    <div>
+      <p class="meta-label">Company</p>
+      <p class="meta-value">Global provider of professional information and software solutions for the legal, tax, accounting, and healthcare sectors, operating across Europe and beyond.</p>
+    </div>
+    <div>
+      <p class="meta-label">My role</p>
+      <p class="meta-value">UX Expert · UX Lead</p>
+    </div>
+    <div>
+      <p class="meta-label">Scope</p>
+      <div class="tags">
+        <span class="tag">Information Architecture</span>
+        <span class="tag">UX Audit</span>
+        <span class="tag">Expert Evaluation</span>
+        <span class="tag">Workshop Facilitation</span>
+        <span class="tag">Stakeholder Management</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHALLENGE -->
+<div class="divider"><span class="divider-label">The challenge</span><div class="divider-line"></div></div>
+<div class="content">
+  <div class="case-block">
+    <p class="block-eyebrow">Context</p>
+    <h2 class="block-title">Two products, one root problem: content without structure.</h2>
+    <p class="block-text">Both the TAA Portal and One Web were built in Salesforce with multiple teams contributing content independently, no governance, no naming standards, no IA principles. The result: redundant navigation, empty pages, inconsistent terminology, and users unable to find what they needed.</p>
+    <p class="block-text">My work across both products meant operating with full autonomy, planning the process, setting timelines, sourcing resources, and managing stakeholder relationships at a senior level, all without a design manager in the loop.</p>
+  </div>
+</div>
+
+<!-- IMPACT -->
+<div class="divider"><span class="divider-label" style="color:var(--indigo);font-weight:500;">Impact</span><div class="divider-line"></div></div>
+<div class="content" style="margin-bottom: 4rem;">
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-icon">🗂️</div>
+      <h3>Identified as implementation priority</h3>
+      <p>TAA redesign was received with strong stakeholder approval and flagged as a priority for implementation, the clearest signal of impact in a project without live metrics.</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">🧭</div>
+      <h3>Shifted stakeholder mindset</h3>
+      <p>One Web evaluation reframed the conversation from content-filling to strategic UX, moving stakeholders from "we just need to organize content" to "we need to design with principles."</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">⚙️</div>
+      <h3>Full ownership, senior-level access</h3>
+      <p>Operated with complete autonomy across both products, planning process, setting timelines, managing senior stakeholders directly, with no design manager intermediary.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- WHAT I DID -->
+<div class="divider"><span class="divider-label">What I did</span><div class="divider-line"></div></div>
+<div class="content">
+  <div class="case-block">
+    <div class="did-list">
+
+      <div class="did-item">
+        <span class="did-number">1</span>
+        <div class="did-content">
+          <h3>TAA, Information Architecture redesign</h3>
+          <p>Mapped the full existing IA tree, identified structural issues, navigation depth, duplicate content, unclear naming, empty pages, and proposed a new architecture reducing redundancy and improving findability.</p>
+          <button class="toggle-btn" onclick="toggleExpand(this)"><span class="toggle-icon">+</span> See more</button>
+          <div class="did-expand">
+            <ul>
+              <li>Mapped full existing IA tree, identified depth issues, duplicate content, unclear naming, empty pages</li>
+              <li>Proposed new architecture reducing redundancy and improving findability</li>
+              <li>Validated with cross-functional stakeholders across multiple rounds</li>
+              <li>Facilitated taxonomy workshop to define naming conventions, content, technical, and business stakeholders</li>
+            </ul>
+            <img src="imgs/wk-1-taa-ia.png" alt="TAA Information Architecture Redesign" class="expand-img">
+            <p class="expand-img-caption">IA mapping, current state diagnosis and proposed restructure across all TAA portal levels.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="did-item">
+        <span class="did-number">2</span>
+        <div class="did-content">
+          <h3>TAA, Layouts & component redesign</h3>
+          <p>Redesigned the UX across all levels of the new IA, without creating new components. The constraint: reuse and adapt existing One Web components only, creating new variants where needed to meet TAA's specific requirements.</p>
+          <button class="toggle-btn" onclick="toggleExpand(this)"><span class="toggle-icon">+</span> See more</button>
+          <div class="did-expand">
+            <ul>
+              <li>Mapped One Web components to TAA needs, identified which could be reused and where gaps existed</li>
+              <li>Designed new variants consistent with the parent system but adapted to TAA's different content context</li>
+              <li>Redesigned layouts across all IA hierarchy levels</li>
+              <li>Documented all use cases for developer handoff</li>
+            </ul>
+            <img src="imgs/wk-2-taa-layouts.png" alt="TAA Layouts and Component Redesign" class="expand-img">
+            <p class="expand-img-caption">Layout redesign, new page anatomy across hierarchy levels, using One Web component variants.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="did-item">
+        <span class="did-number">3</span>
+        <div class="did-content">
+          <h3>One Web, Expert UX evaluation</h3>
+          <p>Led a structured heuristic evaluation of the One Web platform, WK's flagship product unifying services across countries. Designed the evaluation framework, trained evaluators, synthesized findings, and presented strategic recommendations to the extended team.</p>
+          <button class="toggle-btn" onclick="toggleExpand(this)"><span class="toggle-icon">+</span> See more</button>
+          <div class="did-expand">
+            <ul>
+              <li>Platform scored 2.4/5 overall, lowest in Findability (1.8) and Control & Freedom (1.8)</li>
+              <li>Key issues: competing navigation elements, internal terminology exposed to users, inconsistent design standards</li>
+              <li>Designed evaluation framework, trained evaluators, synthesized findings across the team</li>
+              <li>Socialized findings to a proud team, reframed from "this is broken" to "here's the strategic path to excellence"</li>
+              <li>Presented redesign roadmap to the extended One Web team</li>
+            </ul>
+            <img src="imgs/wk-3-oneweb.png" alt="One Web Expert Evaluation" class="expand-img">
+            <p class="expand-img-caption">Expert evaluation findings, heuristic scores by area and prioritized UX issues with design, content, and research recommendations.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="nda-note" style="margin-top: 2rem;">
+      <span class="nda-dot"></span>
+      <p>Full deliverables are covered by NDA. Happy to walk through the complete work in a conversation.</p>
+    </div>
+  </div>
+</div>
+
+<!-- NEXT -->
+<div class="next-project">
+  <div>
+    <p class="next-label">Next project</p>
+    <p class="next-title">Great Minds, EdTech</p>
+  </div>
+  <a href="project-greatminds.html" class="next-arrow">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8H12M12 8L8 4M12 8L8 12" stroke="#1D9E75" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
+
+<footer>
+  <span class="footer-name">Ana María Mejía Gil</span>
+  <div class="footer-right">
+    <span>Lead Experience Designer</span>
+    <a href="mailto:anmejiagil@gmail.com">anmejiagil@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+  function toggleExpand(btn) {
+    const expand = btn.nextElementSibling;
+    const isOpen = expand.classList.contains('open');
+    expand.classList.toggle('open');
+    btn.classList.toggle('open');
+    btn.querySelector('.toggle-icon').textContent = isOpen ? '+' : '×';
+    btn.childNodes[1].textContent = isOpen ? ' See more' : ' See less';
+  }
+</script>
+</body>
+</html>

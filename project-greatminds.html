@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Great Minds, Ana María Mejía Gil</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --accent: #1D9E75; --accent-light: #E1F5EE; --accent-dark: #0F6E56;
+    --nav-bg: #1E1E1A; --ink: #1a1a18; --ink-muted: #4a4a46; --ink-faint: #9a9994;
+    --surface: #F5F5F2; --white: #ffffff;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --border: rgba(0,0,0,0.08);
+    --indigo: #4F6FAE;
+    --indigo-light: #EBF0F9;
+    --indigo-dark: #2E4A82;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--surface); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+  /* NAV */
+  .nav-wrap { position: fixed; top: 1.25rem; left: 0; right: 0; z-index: 100; display: flex; justify-content: center; pointer-events: none; }
+  nav { pointer-events: all; background: var(--nav-bg); border-radius: 100px; padding: 0 1.75rem; display: inline-flex; align-items: center; gap: 2rem; height: 50px; box-shadow: 0 4px 24px rgba(0,0,0,0.18); }
+  .nav-logo { font-family: var(--serif); font-size: 15px; color: #fff; text-decoration: none; padding-right: 1.5rem; border-right: 0.5px solid rgba(255,255,255,0.15); white-space: nowrap; }
+  .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+  .nav-links a { font-size: 12.5px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta { font-size: 12px; font-weight: 500; color: var(--accent-dark); background: var(--accent-light); padding: 7px 16px; border-radius: 100px; text-decoration: none; }
+
+  /* HERO */
+  .project-hero { padding: 7rem 2rem 2.5rem; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); text-decoration: none; margin-bottom: 2.5rem; transition: color 0.2s; }
+  .back-link:hover { color: var(--accent); }
+  .back-link:hover svg { transform: translateX(-3px); }
+  .back-link svg { transition: transform 0.2s; }
+  .industry-tag { display: inline-flex; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-dark); background: var(--accent-light); padding: 4px 10px; border-radius: 2px; margin-bottom: 1.25rem; }
+  .project-title { font-family: var(--serif); font-size: clamp(2.8rem, 6vw, 4.5rem); line-height: 1.0; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1rem; }
+  .project-title em { font-style: italic; color: var(--indigo); }
+  .project-period { font-size: 14px; color: var(--ink-faint); font-weight: 300; }
+  .hero-meta { display: flex; flex-direction: column; gap: 1.5rem; }
+  .meta-label { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 4px; }
+  .meta-value { font-size: 14px; font-weight: 300; color: var(--ink-muted); line-height: 1.5; }
+  .meta-value strong { font-weight: 500; color: var(--ink); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .tag { font-size: 11px; color: var(--ink-muted); border: 0.5px solid var(--border); padding: 4px 10px; border-radius: 100px; background: var(--white); }
+
+  /* DIVIDER */
+  .divider { max-width: 1200px; margin: 0 auto 3rem; padding: 0 2rem; display: flex; align-items: center; gap: 1.25rem; }
+  .divider-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); white-space: nowrap; font-weight: 500; }
+  .divider-line { flex: 1; height: 0.5px; background: var(--border); }
+
+  /* CONTENT */
+  .content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+  /* CHALLENGE / WHAT / IMPACT blocks */
+  .case-block { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 0.5px solid var(--border); }
+  .case-block:last-of-type { border-bottom: none; }
+  .block-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 10px; }
+  .block-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); }
+  .block-title { font-family: var(--serif); font-size: 2rem; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.5rem; line-height: 1.1; }
+  .block-text { font-size: 16px; font-weight: 300; line-height: 1.8; color: var(--ink-muted); margin-bottom: 1rem; }
+
+  /* WHAT I DID list */
+  .did-list { display: flex; flex-direction: column; gap: 0; }
+  .did-item { display: grid; grid-template-columns: 48px 1fr; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 0.5px solid var(--border); }
+  .did-item:last-child { border-bottom: none; }
+  .did-number { font-family: var(--serif); font-size: 1.75rem; color: var(--ink-faint); font-style: italic; line-height: 1; padding-top: 2px; }
+  .did-content h3 { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 0.4rem; }
+
+  /* EXPAND / COLLAPSE */
+  .did-content p { font-size: 14px; font-weight: 300; color: var(--ink-muted); line-height: 1.7; }
+  .did-expand { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 0.5px solid var(--border); }
+  .did-expand.open { display: block; }
+  .did-expand p { font-size: 13.5px; font-weight: 300; color: var(--ink-muted); line-height: 1.75; margin-bottom: 0.75rem; }
+  .did-expand p:last-child { margin-bottom: 0; }
+  .did-expand .request-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid var(--accent-light); background: var(--accent-light);
+    padding: 6px 14px; border-radius: 100px; text-decoration: none; margin-top: 0.5rem;
+    transition: background 0.2s;
+  }
+  .did-expand .request-btn:hover { background: #b8ecd8; }
+  .expand-img { 
+    width: 100%; max-width: 100%; border-radius: 8px; 
+    margin-top: 1rem; border: 0.5px solid var(--border); 
+    display: block; object-fit: cover;
+  }
+  .expand-img-caption { 
+    font-size: 11px; color: var(--ink-faint); 
+    margin-top: 0.5rem; font-weight: 300; margin-bottom: 0.5rem; 
+  }
+  .img-row { 
+    display: grid; grid-template-columns: 1fr 1fr; 
+    gap: 8px; margin-top: 1rem; 
+  }
+  .img-row img { 
+    width: 100%; aspect-ratio: 16/10; 
+    object-fit: cover; object-position: top;
+    border-radius: 8px; border: 0.5px solid var(--border); 
+    display: block;
+  }
+  .did-expand ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 0.75rem;
+  }
+  .did-expand ul li {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+  .toggle-btn {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 0.75rem;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent); background: none; border: none; cursor: pointer; padding: 0;
+    font-family: var(--sans);
+  }
+  .toggle-btn .toggle-icon { transition: transform 0.25s; display: inline-block; }
+  .toggle-btn.open .toggle-icon { transform: rotate(45deg); }
+  .expand-img { 
+    width: 100%; max-width: 100%; border-radius: 8px; 
+    margin-top: 1rem; border: 0.5px solid var(--border); 
+    display: block; object-fit: cover;
+  }
+  .expand-img-caption { 
+    font-size: 11px; color: var(--ink-faint); 
+    margin-top: 0.5rem; font-weight: 300; margin-bottom: 0.5rem; 
+  }
+  .img-row { 
+    display: grid; grid-template-columns: 1fr 1fr; 
+    gap: 8px; margin-top: 1rem; 
+  }
+  .img-row img { 
+    width: 100%; aspect-ratio: 16/10; 
+    object-fit: cover; object-position: top;
+    border-radius: 8px; border: 0.5px solid var(--border); 
+    display: block;
+  }
+
+  /* IMPACT cards */
+  .impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 0.5px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .impact-card { background: var(--white); padding: 1.75rem; }
+  .impact-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+  .impact-card h3 { font-family: var(--serif); font-size: 1.1rem; color: var(--indigo-dark); margin-bottom: 0.5rem; line-height: 1.2; }
+  .impact-card p { font-size: 13px; font-weight: 300; color: var(--ink-muted); line-height: 1.6; }
+
+  /* NDA note */
+  .nda-note { display: flex; align-items: flex-start; gap: 10px; background: var(--accent-light); border-radius: 8px; padding: 1rem 1.25rem; margin-top: 1.5rem; }
+  .nda-note p { font-size: 13px; color: var(--accent-dark); font-weight: 300; line-height: 1.5; }
+  .nda-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 5px; }
+
+  /* NEXT */
+  .next-project { border-top: 0.5px solid var(--border); padding: 3rem 2rem 4rem; max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+  .next-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); font-weight: 500; margin-bottom: 0.5rem; }
+  .next-title { font-family: var(--serif); font-size: 1.5rem; letter-spacing: -0.02em; color: var(--ink); }
+  .next-arrow { width: 44px; height: 44px; border: 0.5px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: background 0.2s, border-color 0.2s; flex-shrink: 0; }
+  .next-arrow:hover { background: var(--accent-light); border-color: var(--accent); }
+
+  /* FOOTER */
+  footer { border-top: 0.5px solid var(--border); padding: 2rem 2rem; max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-name { font-family: var(--serif); font-size: 15px; color: var(--ink); }
+  .footer-right { display: flex; align-items: center; gap: 1.75rem; flex-wrap: wrap; }
+  .footer-right a, .footer-right span { font-size: 13px; color: var(--ink-muted); text-decoration: none; font-weight: 300; }
+  .footer-right a:hover { color: var(--accent); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .project-hero { animation: fadeUp 0.65s ease both; }
+
+  @media (max-width: 680px) {
+    .nav-links { display: none; }
+    nav { gap: 1.25rem; padding: 0 1.25rem; }
+    .project-hero { grid-template-columns: 1fr; gap: 2rem; padding: 8rem 1.5rem 3rem; }
+    .content { padding: 0 1.5rem; }
+    .divider { padding: 0 1.5rem; }
+    .impact-grid { grid-template-columns: 1fr; }
+    .next-project { padding: 2rem 1.5rem 3rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-wrap">
+  <nav>
+    <a href="portfolio.html" class="nav-logo">Ana María Mejía</a>
+    <ul class="nav-links">
+      <li><a href="portfolio.html#work">Work</a></li>
+      <li><a href="about.html">About &amp; CV</a></li>
+    </ul>
+    <a href="mailto:anmejiagil@gmail.com" class="nav-cta">Email me</a>
+  </nav>
+</div>
+
+<div class="project-hero">
+  <div>
+    <a href="portfolio.html" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      All projects
+    </a>
+    <span class="industry-tag">EdTech</span>
+    <h1 class="project-title">Great<br><em>Minds</em></h1>
+    <p class="project-period">Globant · 2021 – 2023</p>
+  </div>
+  <div class="hero-meta">
+    <div>
+      <p class="meta-label">Company</p>
+      <p class="meta-value">K-12 education platform for teachers, homeschool parents, and students, in-classroom and remote. By 2023, serving 8.6M students across the US.</p>
+    </div>
+    <div>
+      <p class="meta-label">My role</p>
+      <p class="meta-value">UX Designer · Design Ops Lead · Accessibility</p>
+    </div>
+    <div>
+      <p class="meta-label">Scope</p>
+      <div class="tags">
+        <span class="tag">UX/UI</span>
+        <span class="tag">Design Ops</span>
+        <span class="tag">Accessibility</span>
+        <span class="tag">Mentoring</span>
+        <span class="tag">Stakeholder management</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHALLENGE -->
+<div class="divider"><span class="divider-label">The challenge</span><div class="divider-line"></div></div>
+<div class="content">
+  <div class="case-block">
+    <p class="block-eyebrow">Context</p>
+    <h2 class="block-title">A growing platform that needed more than just design execution.</h2>
+    <p class="block-text">Great Minds needed a design team that could operate autonomously, maintain WCAG 2.1 AA accessibility standards across a complex multi-user platform, and build scalable processes, within a lean, high-trust team structure where designers were expected to own their work end-to-end.</p>
+    <p class="block-text">Beyond the product work, the team needed shared knowledge, common tools, and a culture of quality that could survive team changes and account growth.</p>
+  </div>
+</div>
+
+<!-- IMPACT -->
+<div class="divider"><span class="divider-label" style="color:var(--indigo);font-weight:500;">Impact</span><div class="divider-line"></div></div>
+<div class="content" style="margin-bottom: 4rem;">
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-icon">🌎</div>
+      <h3>Design Ops adopted studio-wide</h3>
+      <p>Toolkit presented at client Design Showcase, then expanded to Globant's entire Latin America design studio, actively used by the broader design community.</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">📈</div>
+      <h3>Testing talk → new service sold</h3>
+      <p>The client presentation on testing capabilities directly led to expanding the engagement to include research and usability testing services.</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">📖</div>
+      <h3>Accessibility as a standard</h3>
+      <p>"Unlocking Accessibility" became a first-day resource for everyone joining the account, designers and developers alike.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- WHAT I DID -->
+<div class="divider"><span class="divider-label">What I did</span><div class="divider-line"></div></div>
+<div class="content">
+  <div class="case-block">
+    <div class="did-list">
+
+      <div class="did-item">
+        <span class="did-number">1</span>
+        <div class="did-content">
+          <h3>Autonomous client ownership</h3>
+          <p>Independently managed two full product tracks, Live Mode and Planning, with direct client communication. Represented design decisions, presented solutions, and iterated based on feedback without intermediary. This became my operating model across all Globant accounts.</p>
+          <button class="toggle-btn" onclick="toggleExpand(this)"><span class="toggle-icon">+</span> See more</button>
+          <div class="did-expand">
+            <ul>
+              <li>Joined client calls solo, no intermediary between design and client</li>
+              <li>Prepared and led design reviews, presented solutions directly</li>
+              <li>Negotiated scope changes in real time based on business feedback</li>
+              <li>Full ownership of outcome across Live Mode and Planning tracks</li>
+            </ul>
+            <img src="imgs/gm-1-1-lm.png" alt="Live Mode Reinvention" class="expand-img">
+            <div class="img-row" style="margin-top:8px;"><img src="imgs/gm-1-2-lm.png" alt="Live Mode detail"><img src="imgs/gm-1-3-flows.png" alt="Live Mode flows"></div>
+            <p class="expand-img-caption">Live Mode Reinvention, redesign of the teacher-facing platform, from heuristic evaluation through final proposal. Low adoption triggered a full UX overhaul.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="did-item">
+        <span class="did-number">2</span>
+        <div class="did-content">
+          <h3>Design Ops initiative, end to end</h3>
+          <p>Identified the need, built the plan, assigned tasks, and led the team in creating a comprehensive toolkit covering methods, templates, and resources for every stage of the design process. Presented first at a client Design Showcase, then expanded to Globant's Latin America design studio.</p>
+          <button class="toggle-btn" onclick="toggleExpand(this)"><span class="toggle-icon">+</span> See more</button>
+          <div class="did-expand">
+            <ul>
+              <li>Surfaced the pain point: designers reinventing the wheel on every project</li>
+              <li>Templates covered: Discover, Define, Ideate, and Deliver phases, research planning, synthesis, ideation, flows, handoff, and testing</li>
+              <li>Built collaboratively, assigned experts per tool, tested at 2022 design summit</li>
+              <li>Published for free use across the studio, still active today</li>
+            </ul>
+            <img src="imgs/gm-2-1-designops.png" alt="Design Ops Methods &amp; Tools site" class="expand-img">
+            <div class="img-row" style="margin-top:8px;"><img src="imgs/gm-2-2-interviewwizard.png" alt="Interview Wizard"><img src="imgs/gm-2-3-heuristics.png" alt="Heuristics template"></div>
+            <p class="expand-img-caption">Methods & Tools site, overview of templates by design phase, including Interview Wizard and Heuristic Evaluation tools.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="did-item">
+        <span class="did-number">3</span>
+        <div class="did-content">
+          <h3>Design Talks, internal &amp; client-facing</h3>
+          <p>Led <em>"Nielsen Is Not Alone"</em>, a talk on usability heuristics for the design team, expanding evaluation frameworks beyond Nielsen. Delivered <em>"What and How You Can Test"</em> to the client, demonstrating the team's research and testing capabilities.</p>
+          <button class="toggle-btn" onclick="toggleExpand(this)"><span class="toggle-icon">+</span> See more</button>
+          <div class="did-expand">
+            <ul>
+              <li><strong>Nielsen Is Not Alone:</strong> covered 8+ heuristic repositories (Web 9, Psychological Usability, IA Heuristics, Laws of UX), revisited at the 2022 design summit</li>
+              <li><strong>What and How You Can Test:</strong> explained testing types, metrics, and when to apply each, framed as education, functioned as a pre-sales pitch</li>
+              <li>Months after the testing talk, client expanded engagement to include research and usability testing services</li>
+            </ul>
+            <div class="img-row"><img src="imgs/gm-3-nielsen.png" alt="Nielsen is Not Alone talk"><img src="imgs/gm-3-presale.png" alt="Pre-sale testing talk"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="did-item">
+        <span class="did-number">4</span>
+        <div class="did-content">
+          <h3>Accessibility documentation</h3>
+          <p>Co-designed the a11y behavior template for developers, tab order, aria labels, focus order, alt texts, heading structure, ensuring WCAG 2.1 AA compliance. Promoted accessibility documentation as a standard practice within the team, supported by Deque expert consulting.</p>
+          <button class="toggle-btn" onclick="toggleExpand(this)"><span class="toggle-icon">+</span> See more</button>
+          <div class="did-expand">
+            <ul>
+              <li>Integrated into every design flow, documented after VD approval, before dev handoff</li>
+              <li>Covered: tab order, component types, aria labels (Live, Assertive), alt text, focus order at 100/200/400%, heading hierarchy</li>
+              <li>Reduced developer back-and-forth, specs included behavior, not just screens</li>
+              <li>Supported by Deque expert consulting for edge cases and validation</li>
+            </ul>
+            <img src="imgs/gm-4-a11y-doc.png" alt="A11y documentation" class="expand-img">
+          </div>
+        </div>
+      </div>
+
+      <div class="did-item">
+        <span class="did-number">5</span>
+        <div class="did-content">
+          <h3>"Unlocking Accessibility" book</h3>
+          <p>Initiative Leader and co-author of a practical accessibility guide tailored to educational platforms, covering WCAG standards, reading order, aria labels, interactive zones, color as information, and reflow. Created to onboard designers and developers with clear, applicable principles from day one.</p>
+          <button class="toggle-btn" onclick="toggleExpand(this)"><span class="toggle-icon">+</span> See more</button>
+          <div class="did-expand">
+            <ul>
+              <li>Initiative Leader and co-author, designed the book to be accessible itself</li>
+              <li>Topics: WCAG intro, reading order, heading structure, aria labels, alt texts, interactive zones, text length, color as information, reflow and zoom</li>
+              <li>Written for both designers and developers, clear language, visual examples, real platform scenarios</li>
+              <li>Became the first-day onboarding resource for anyone joining the account</li>
+            </ul>
+            <img src="imgs/gm-5-a11y-book.png" alt="Unlocking Accessibility book" class="expand-img">
+          </div>
+        </div>
+      </div>
+
+      <div class="did-item">
+        <span class="did-number">6</span>
+        <div class="did-content">
+          <h3>Mentoring, QC designers transitioning to UX</h3>
+          <p>Mentored QA professionals transitioning into UX within the Great Minds account, helping them build skills and prepare for their UX certification exam.</p>
+          <button class="toggle-btn" onclick="toggleExpand(this)"><span class="toggle-icon">+</span> See more</button>
+          <div class="did-expand">
+            <ul>
+              <li>Assigned simple flows for them to work on as hands-on practice within the real project</li>
+              <li>Held regular 1:1s to share resources, clarify UX concepts, and give feedback on their work</li>
+              <li>Trained them on methodology, design principles, and process, preparing them for the formal UX exam</li>
+              <li>Included them in team critique sessions alongside the full design team</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="nda-note" style="margin-top: 2rem;">
+      <span class="nda-dot"></span>
+      <p>Product screens are covered by NDA. Happy to walk through the complete flows in a conversation.</p>
+    </div>
+  </div>
+</div>
+
+<!-- NEXT -->
+<div class="next-project">
+  <div>
+    <p class="next-label">Next project</p>
+    <p class="next-title">Ipsos Colombia, Healthcare · Telco</p>
+  </div>
+  <a href="#" class="next-arrow">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8H12M12 8L8 4M12 8L8 12" stroke="#1D9E75" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
+
+<footer>
+  <span class="footer-name">Ana María Mejía Gil</span>
+  <div class="footer-right">
+    <span>Lead Experience Designer</span>
+    <a href="mailto:anmejiagil@gmail.com">anmejiagil@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+  function toggleExpand(btn) {
+    const expand = btn.nextElementSibling;
+    const isOpen = expand.classList.contains('open');
+    expand.classList.toggle('open');
+    btn.classList.toggle('open');
+    btn.querySelector('.toggle-icon').textContent = isOpen ? '+' : '×';
+    btn.childNodes[1].textContent = isOpen ? ' See more' : ' See less';
+  }
+</script>
+</body>
+</html>

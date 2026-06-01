@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About, Ana María Mejía Gil</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --accent: #1D9E75; --accent-light: #E1F5EE; --accent-dark: #0F6E56;
+    --nav-bg: #1E1E1A; --ink: #1a1a18; --ink-muted: #6b6b66; --ink-faint: #c8c7c0;
+    --surface: #F5F5F2; --white: #ffffff;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --border: rgba(0,0,0,0.08);
+    --indigo: #4F6FAE;
+    --indigo-light: #EBF0F9;
+    --indigo-dark: #2E4A82;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--surface); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+  /* NAV */
+  .nav-wrap { position: fixed; top: 1.25rem; left: 0; right: 0; z-index: 100; display: flex; justify-content: center; pointer-events: none; }
+  nav { pointer-events: all; background: var(--nav-bg); border-radius: 100px; padding: 0 1.75rem; display: inline-flex; align-items: center; gap: 2rem; height: 50px; box-shadow: 0 4px 24px rgba(0,0,0,0.18); }
+  .nav-logo { font-family: var(--serif); font-size: 15px; color: #fff; text-decoration: none; padding-right: 1.5rem; border-right: 0.5px solid rgba(255,255,255,0.15); white-space: nowrap; }
+  .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+  .nav-links a { font-size: 12.5px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: #fff; }
+  .nav-cta { font-size: 12px; font-weight: 500; color: var(--accent-dark); background: var(--accent-light); padding: 7px 16px; border-radius: 100px; text-decoration: none; }
+
+  /* HERO */
+  .about-hero { padding: 7rem 2rem 3rem; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr; gap: 3rem; align-items: center; }
+  .photo-wrap { flex-shrink: 0; }
+  .photo-circle { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; object-position: center top; border: 3px solid var(--white); box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: block; }
+  .hero-text { }
+  .hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 8px; }
+  .hero-eyebrow::before { content: ''; display: block; width: 18px; height: 1px; background: var(--accent); }
+  .hero-name { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.0; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 0.5rem; }
+  .hero-title { font-size: 14px; font-weight: 300; color: var(--ink-muted); letter-spacing: 0.02em; }
+
+  /* DIVIDER */
+  .divider { max-width: 1200px; margin: 0 auto 2.5rem; padding: 0 2rem; display: flex; align-items: center; gap: 1.25rem; }
+  .divider-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); white-space: nowrap; font-weight: 500; }
+  .divider-line { flex: 1; height: 0.5px; background: var(--border); }
+
+  /* CONTENT */
+  .content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+  .hero-title-row {
+    display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  }
+  .cv-hero-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 500; color: var(--accent-dark);
+    background: var(--accent-light); padding: 6px 14px;
+    border-radius: 100px; text-decoration: none;
+    transition: background 0.2s; white-space: nowrap;
+  }
+  .cv-hero-btn:hover { background: #b8ecd8; }
+
+  /* BIO */
+  .bio { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 0.5px solid var(--border); }
+  .bio-text p { font-size: 16px; font-weight: 300; line-height: 1.85; color: var(--ink-muted); margin-bottom: 1.1rem; }
+  .bio-text p:last-child { margin-bottom: 0; }
+  .bio-text p strong { font-weight: 500; color: var(--ink); }
+  .bio-meta { display: flex; flex-direction: column; gap: 1.75rem; }
+  .meta-item { }
+  .meta-label { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px; }
+  .meta-value { font-size: 14px; font-weight: 300; color: var(--ink-muted); line-height: 1.6; }
+  .meta-value a { color: var(--accent); text-decoration: none; }
+  .meta-value a:hover { text-decoration: underline; }
+
+  /* SKILLS */
+  .skills { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 0.5px solid var(--border); }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 0.5px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .skill-group { background: var(--white); padding: 1.75rem; }
+  .skill-group-label { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.1rem; display: flex; align-items: center; gap: 8px; }
+  .skill-group-label::before { content: ''; display: block; width: 14px; height: 1px; background: var(--accent); }
+  .skill-list { display: flex; flex-direction: column; gap: 7px; }
+  .skill-item { font-size: 13px; font-weight: 300; color: var(--ink-muted); line-height: 1.4; padding-left: 0; }
+
+  /* EDUCATION */
+  .education { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 0.5px solid var(--border); }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .edu-section-label { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.25rem; }
+  .edu-item { margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 0.5px solid var(--border); }
+  .edu-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .edu-name { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+  .edu-institution { font-size: 13px; font-weight: 300; color: var(--ink-muted); }
+  .edu-year { font-size: 12px; color: var(--ink-faint); margin-top: 2px; }
+
+  /* CV DOWNLOAD */
+  .cv-section { margin-bottom: 5rem; }
+  .cv-card { background: var(--nav-bg); border-radius: 12px; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+  .cv-card-text h2 { font-family: var(--serif); font-size: 1.75rem; color: #fff; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  .cv-card-text p { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.5); line-height: 1.6; }
+  .cv-download-btn { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; color: var(--accent-dark); background: var(--accent-light); padding: 12px 24px; border-radius: 100px; text-decoration: none; white-space: nowrap; transition: background 0.2s; flex-shrink: 0; }
+  .cv-download-btn:hover { background: #b8ecd8; }
+
+  .cv-secondary-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 400; color: var(--ink-muted);
+    border: 0.5px solid var(--border); background: transparent;
+    padding: 10px 20px; border-radius: 100px; text-decoration: none;
+    margin-top: 1rem; transition: border-color 0.2s, color 0.2s;
+  }
+  .cv-secondary-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* FOOTER */
+  footer { border-top: 0.5px solid var(--border); padding: 2rem 2rem; max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-name { font-family: var(--serif); font-size: 15px; color: var(--ink); }
+  .footer-right { display: flex; align-items: center; gap: 1.75rem; flex-wrap: wrap; }
+  .footer-right a, .footer-right span { font-size: 13px; color: var(--ink-muted); text-decoration: none; font-weight: 300; }
+  .footer-right a:hover { color: var(--accent); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .about-hero { animation: fadeUp 0.65s ease both; }
+
+  @media (max-width: 680px) {
+    .nav-links { display: none; }
+    nav { gap: 1.25rem; padding: 0 1.25rem; }
+    .about-hero { padding: 7rem 1.5rem 2.5rem; grid-template-columns: 1fr; gap: 1.5rem; }
+    .content { padding: 0 1.5rem; }
+    .divider { padding: 0 1.5rem; }
+    .bio { grid-template-columns: 1fr; gap: 2rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .cv-card { flex-direction: column; align-items: flex-start; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-wrap">
+  <nav>
+    <a href="portfolio.html" class="nav-logo">Ana María Mejía</a>
+    <ul class="nav-links">
+      <li><a href="portfolio.html#work">Work</a></li>
+      <li><a href="#" class="active">About &amp; CV</a></li>
+    </ul>
+    <a href="mailto:anmejiagil@gmail.com" class="nav-cta">Email me</a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<div class="about-hero">
+  <div class="photo-wrap">
+    <img src="imgs/profile.png" alt="Ana María Mejía Gil" class="photo-circle">
+  </div>
+  <div class="hero-text">
+    <p class="hero-eyebrow">About me</p>
+    <h1 class="hero-name">Ana María<br>Mejía Gil</h1>
+    <div class="hero-title-row">
+      <p class="hero-title">Lead Experience Designer · UX Specialist</p>
+      <a href="Ana_Maria_Mejia_CV.pdf" download class="cv-hero-btn">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v7M7 9L4.5 6.5M7 9l2.5-2.5M2.5 11.5h9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Download CV
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- BIO -->
+<div class="divider"><span class="divider-label">Bio</span><div class="divider-line"></div></div>
+<div class="content">
+  <div class="bio">
+    <div class="bio-text">
+      <p>With <strong>12 years shaping digital products</strong> across finance, healthcare, retail, education, and automotive, I work at the intersection of strategy and craft, leading design processes end-to-end, from requirements and research to tested, documented delivery.</p>
+      <p>I've driven design practice initiatives across global teams: establishing workflows, mentoring designers, and aligning cross-functional stakeholders in complex, agile environments.</p>
+      <p><strong>AI is part of how I work today.</strong> I use it daily, study it continuously, and stay current on tools, tradeoffs, and real-world applications, ready to bring that into any team or client environment.</p>
+    </div>
+    <div class="bio-meta">
+      <div class="meta-item">
+        <p class="meta-label">Based in</p>
+        <p class="meta-value">Medellín, Colombia</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Currently</p>
+        <p class="meta-value">Senior UX Designer at Globant<br>Open to new opportunities</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Contact</p>
+        <p class="meta-value"><a href="mailto:anmejiagil@gmail.com">anmejiagil@gmail.com</a><br>(+57) 311 333 2375</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Elsewhere</p>
+        <p class="meta-value"><a href="https://behance.net/AnaMejia" target="_blank">Behance.net/AnaMejia</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="divider"><span class="divider-label">Skills</span><div class="divider-line"></div></div>
+<div class="content">
+  <div class="skills">
+    <div class="skills-grid">
+      <div class="skill-group">
+        <p class="skill-group-label">Leadership &amp; Strategy</p>
+        <div class="skill-list">
+          <span class="skill-item">Design Practice Leadership</span>
+          <span class="skill-item">Strategic Design</span>
+          <span class="skill-item">Design Ops</span>
+          <span class="skill-item">Agile Design Methodologies</span>
+          <span class="skill-item">Requirements Gathering</span>
+          <span class="skill-item">Stakeholder Negotiation</span>
+          <span class="skill-item">Prioritization</span>
+          <span class="skill-item">Scope &amp; Effort Estimation</span>
+          <span class="skill-item">Resource &amp; Capacity Planning</span>
+          <span class="skill-item">Pre-sales Collaboration</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-label">Discovery &amp; Definition</p>
+        <div class="skill-list">
+          <span class="skill-item">Design Research</span>
+          <span class="skill-item">Service Design</span>
+          <span class="skill-item">Expert UX Evaluations</span>
+          <span class="skill-item">Information Architecture</span>
+          <span class="skill-item">HCD Techniques</span>
+          <span class="skill-item">Collaborative Facilitation</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-label">Craft &amp; Delivery</p>
+        <div class="skill-list">
+          <span class="skill-item">User Flows</span>
+          <span class="skill-item">UX/UI</span>
+          <span class="skill-item">Design Systems</span>
+          <span class="skill-item">Documentation</span>
+          <span class="skill-item">Proofs of Concept</span>
+          <span class="skill-item">Accessibility</span>
+          <span class="skill-item">AI-Assisted Design</span>
+          <span class="skill-item">AI Agent Design</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About, Ana María Mejía Gil</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --accent: #1D9E75; --accent-light: #E1F5EE; --accent-dark: #0F6E56;
+    --nav-bg: #1E1E1A; --ink: #1a1a18; --ink-muted: #6b6b66; --ink-faint: #c8c7c0;
+    --surface: #F5F5F2; --white: #ffffff;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --border: rgba(0,0,0,0.08);
+    --indigo: #4F6FAE;
+    --indigo-light: #EBF0F9;
+    --indigo-dark: #2E4A82;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--surface); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+  /* NAV */
+  .nav-wrap { position: fixed; top: 1.25rem; left: 0; right: 0; z-index: 100; display: flex; justify-content: center; pointer-events: none; }
+  nav { pointer-events: all; background: var(--nav-bg); border-radius: 100px; padding: 0 1.75rem; display: inline-flex; align-items: center; gap: 2rem; height: 50px; box-shadow: 0 4px 24px rgba(0,0,0,0.18); }
+  .nav-logo { font-family: var(--serif); font-size: 15px; color: #fff; text-decoration: none; padding-right: 1.5rem; border-right: 0.5px solid rgba(255,255,255,0.15); white-space: nowrap; }
+  .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+  .nav-links a { font-size: 12.5px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: #fff; }
+  .nav-cta { font-size: 12px; font-weight: 500; color: var(--accent-dark); background: var(--accent-light); padding: 7px 16px; border-radius: 100px; text-decoration: none; }
+
+  /* HERO */
+  .about-hero { padding: 7rem 2rem 3rem; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr; gap: 3rem; align-items: center; }
+  .photo-wrap { flex-shrink: 0; }
+  .photo-circle { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; object-position: center top; border: 3px solid var(--white); box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: block; }
+  .hero-text { }
+  .hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 8px; }
+  .hero-eyebrow::before { content: ''; display: block; width: 18px; height: 1px; background: var(--accent); }
+  .hero-name { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.0; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 0.5rem; }
+  .hero-title { font-size: 14px; font-weight: 300; color: var(--ink-muted); letter-spacing: 0.02em; }
+
+  /* DIVIDER */
+  .divider { max-width: 1200px; margin: 0 auto 2.5rem; padding: 0 2rem; display: flex; align-items: center; gap: 1.25rem; }
+  .divider-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); white-space: nowrap; font-weight: 500; }
+  .divider-line { flex: 1; height: 0.5px; background: var(--border); }
+
+  /* CONTENT */
+  .content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+  .hero-title-row {
+    display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  }
+  .cv-hero-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 500; color: var(--accent-dark);
+    background: var(--accent-light); padding: 6px 14px;
+    border-radius: 100px; text-decoration: none;
+    transition: background 0.2s; white-space: nowrap;
+  }
+  .cv-hero-btn:hover { background: #b8ecd8; }
+
+  /* BIO */
+  .bio { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 0.5px solid var(--border); }
+  .bio-text p { font-size: 16px; font-weight: 300; line-height: 1.85; color: var(--ink-muted); margin-bottom: 1.1rem; }
+  .bio-text p:last-child { margin-bottom: 0; }
+  .bio-text p strong { font-weight: 500; color: var(--ink); }
+  .bio-meta { display: flex; flex-direction: column; gap: 1.75rem; }
+  .meta-item { }
+  .meta-label { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px; }
+  .meta-value { font-size: 14px; font-weight: 300; color: var(--ink-muted); line-height: 1.6; }
+  .meta-value a { color: var(--accent); text-decoration: none; }
+  .meta-value a:hover { text-decoration: underline; }
+
+  /* SKILLS */
+  .skills { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 0.5px solid var(--border); }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 0.5px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .skill-group { background: var(--white); padding: 1.75rem; }
+  .skill-group-label { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.1rem; display: flex; align-items: center; gap: 8px; }
+  .skill-group-label::before { content: ''; display: block; width: 14px; height: 1px; background: var(--accent); }
+  .skill-list { display: flex; flex-direction: column; gap: 7px; }
+  .skill-item { font-size: 13px; font-weight: 300; color: var(--ink-muted); line-height: 1.4; padding-left: 0; }
+
+  /* EDUCATION */
+  .education { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 0.5px solid var(--border); }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .edu-section-label { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.25rem; }
+  .edu-item { margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 0.5px solid var(--border); }
+  .edu-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .edu-name { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+  .edu-institution { font-size: 13px; font-weight: 300; color: var(--ink-muted); }
+  .edu-year { font-size: 12px; color: var(--ink-faint); margin-top: 2px; }
+
+  /* CV DOWNLOAD */
+  .cv-section { margin-bottom: 5rem; }
+  .cv-card { background: var(--nav-bg); border-radius: 12px; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+  .cv-card-text h2 { font-family: var(--serif); font-size: 1.75rem; color: #fff; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  .cv-card-text p { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.5); line-height: 1.6; }
+  .cv-download-btn { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; color: var(--accent-dark); background: var(--accent-light); padding: 12px 24px; border-radius: 100px; text-decoration: none; white-space: nowrap; transition: background 0.2s; flex-shrink: 0; }
+  .cv-download-btn:hover { background: #b8ecd8; }
+
+  .cv-secondary-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 400; color: var(--ink-muted);
+    border: 0.5px solid var(--border); background: transparent;
+    padding: 10px 20px; border-radius: 100px; text-decoration: none;
+    margin-top: 1rem; transition: border-color 0.2s, color 0.2s;
+  }
+  .cv-secondary-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* FOOTER */
+  footer { border-top: 0.5px solid var(--border); padding: 2rem 2rem; max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-name { font-family: var(--serif); font-size: 15px; color: var(--ink); }
+  .footer-right { display: flex; align-items: center; gap: 1.75rem; flex-wrap: wrap; }
+  .footer-right a, .footer-right span { font-size: 13px; color: var(--ink-muted); text-decoration: none; font-weight: 300; }
+  .footer-right a:hover { color: var(--accent); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .about-hero { animation: fadeUp 0.65s ease both; }
+
+  @media (max-width: 680px) {
+    .nav-links { display: none; }
+    nav { gap: 1.25rem; padding: 0 1.25rem; }
+    .about-hero { padding: 7rem 1.5rem 2.5rem; grid-template-columns: 1fr; gap: 1.5rem; }
+    .content { padding: 0 1.5rem; }
+    .divider { padding: 0 1.5rem; }
+    .bio { grid-template-columns: 1fr; gap: 2rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .cv-card { flex-direction: column; align-items: flex-start; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-wrap">
+  <nav>
+    <a href="portfolio.html" class="nav-logo">Ana María Mejía</a>
+    <ul class="nav-links">
+      <li><a href="portfolio.html#work">Work</a></li>
+      <li><a href="#" class="active">About &amp; CV</a></li>
+    </ul>
+    <a href="mailto:anmejiagil@gmail.com" class="nav-cta">Email me</a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<!-- EDUCATION -->
+<div class="divider"><span class="divider-label">Education</span><div class="divider-line"></div></div>
+<div class="content">
+  <div class="education">
+    <div class="edu-grid">
+      <div>
+        <p class="edu-section-label">Degrees</p>
+        <div class="edu-item">
+          <p class="edu-name">Social Intervention in Knowledge Societies</p>
+          <p class="edu-institution">Master's Degree · UNIR</p>
+          <p class="edu-year">2017</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-name">Industrial Designer</p>
+          <p class="edu-institution">UPB (Universidad Pontificia Bolivariana)</p>
+          <p class="edu-year">2014</p>
+        </div>
+      </div>
+      <div>
+        <p class="edu-section-label">Certifications & Courses</p>
+        <div class="edu-item">
+          <p class="edu-name">Claude 101</p>
+          <p class="edu-institution">Anthropic Academy</p>
+          <p class="edu-year">2026</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-name">Agentic AI Systems</p>
+          <p class="edu-institution">Globant University</p>
+          <p class="edu-year">2025</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-name">Project Management for UX/UI Designers</p>
+          <p class="edu-institution">Udemy</p>
+          <p class="edu-year">2025</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-name">Agile Methods for UX Designers</p>
+          <p class="edu-institution">Interaction Design Foundation</p>
+          <p class="edu-year">2024</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-name">Web Accessibility, W3Cx WAI0.1x</p>
+          <p class="edu-institution">edX</p>
+          <p class="edu-year">2023</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-name">Google Analytics for Beginners</p>
+          <p class="edu-institution">Google Academy</p>
+          <p class="edu-year">2023</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-name">Accessibility: how to design for all</p>
+          <p class="edu-institution">Interaction Design Foundation</p>
+          <p class="edu-year">2020</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-name">Mobile User Experience Design</p>
+          <p class="edu-institution">Interaction Design Foundation</p>
+          <p class="edu-year">2019</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-name">Human Centered Design for Social Innovation</p>
+          <p class="edu-institution">Acumen & IDEO.org</p>
+          <p class="edu-year">2014</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CV DOWNLOAD -->
+<div class="divider"><span class="divider-label">Resume</span><div class="divider-line"></div></div>
+<div class="content">
+  <div class="cv-section">
+    <div class="cv-card">
+      <div class="cv-card-text">
+        <h2>Want the full picture?</h2>
+        <p>Download my CV for the complete timeline, experience, education, and skills in one place.</p>
+      </div>
+      <a href="Ana_Maria_Mejia_CV.pdf" download class="cv-download-btn">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 2v8M8 10L5 7M8 10l3-3M3 13h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Download CV
+      </a>
+    </div>
+  <a href="https://behance.net/AnaMejia" target="_blank" class="cv-secondary-btn" style="margin-left:3rem; margin-bottom: 4rem; display:inline-flex;">
+    ↗ Earlier work on Behance (2014–2020)
+  </a>
+</div>
+
+<footer>
+  <span class="footer-name">Ana María Mejía Gil</span>
+  <div class="footer-right">
+    <span>Lead Experience Designer</span>
+    <a href="mailto:anmejiagil@gmail.com">anmejiagil@gmail.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
