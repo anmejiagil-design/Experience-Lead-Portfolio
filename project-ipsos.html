@@ -119,6 +119,36 @@
     border-radius: 8px; border: 0.5px solid var(--border); 
     display: block;
   }
+  /* Metric translation model — conceptual diagram (usability → business) */
+  .metric-model { margin-top: 1.25rem; border: 0.5px solid var(--border); border-radius: 10px; background: var(--white); padding: 1.5rem 1.5rem 1.25rem; }
+  .metric-model-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.4rem; }
+  .metric-model-title { font-family: var(--serif); font-size: 1.2rem; line-height: 1.2; color: var(--ink); margin-bottom: 0.55rem; }
+  .metric-model-intro { font-size: 13px; font-weight: 300; line-height: 1.65; color: var(--ink-muted); margin-bottom: 1.5rem; max-width: 62ch; }
+  .metric-head, .metric-row { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; column-gap: 0.6rem; }
+  .metric-head { align-items: end; margin-bottom: 0.7rem; }
+  .metric-row { align-items: stretch; margin-bottom: 0.6rem; }
+  .metric-row:last-of-type { margin-bottom: 0; }
+  .metric-head-cell .h { display: block; font-size: 11px; font-weight: 500; letter-spacing: 0.03em; color: var(--ink); margin-bottom: 5px; }
+  .metric-indic { display: inline-flex; font-size: 9px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; padding: 2px 8px; border-radius: 100px; }
+  .metric-indic.lead { color: var(--accent-dark); background: var(--accent-light); }
+  .metric-indic.lag { color: var(--indigo-dark); background: var(--indigo-light); }
+  .metric-chip { display: flex; flex-direction: column; justify-content: center; gap: 3px; font-size: 13px; line-height: 1.35; padding: 0.7rem 0.85rem; border-radius: 8px; border: 0.5px solid var(--border); }
+  .metric-chip .chip-kind { display: none; font-size: 9px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; }
+  .metric-chip.signal { background: var(--surface); color: var(--ink-muted); font-weight: 300; }
+  .metric-chip.usability { background: var(--accent-light); color: var(--accent-dark); border-color: rgba(29,158,117,0.22); font-weight: 500; }
+  .metric-chip.business { background: var(--indigo-light); color: var(--indigo-dark); border-color: rgba(79,111,174,0.22); font-weight: 500; }
+  .metric-arrow { align-self: center; color: var(--ink-faint); flex-shrink: 0; }
+  .metric-foot { font-size: 11px; font-weight: 300; color: var(--ink-faint); line-height: 1.55; margin-top: 1.1rem; padding-top: 0.9rem; border-top: 0.5px solid var(--border); }
+  @media (max-width: 680px) {
+    .metric-head { display: none; }
+    .metric-row { grid-template-columns: 1fr; background: var(--surface); border: 0.5px solid var(--border); border-radius: 8px; padding: 0.75rem; margin-bottom: 0.75rem; }
+    .metric-row .metric-chip.signal { background: var(--white); }
+    .metric-arrow { transform: rotate(90deg); margin: 5px auto; }
+    .metric-chip .chip-kind { display: block; }
+    .metric-chip.signal .chip-kind { color: var(--ink-faint); }
+    .metric-chip.usability .chip-kind { color: var(--accent-dark); }
+    .metric-chip.business .chip-kind { color: var(--indigo-dark); }
+  }
   .clients-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 0.5px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 2rem; }
   .client-card { background: var(--white); padding: 1.5rem; }
   .client-industry { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
@@ -194,6 +224,30 @@
   </div>
 </div>
 
+<!-- IMPACT -->
+<div class="divider"><span class="divider-label" style="color:var(--indigo);font-weight:500;">Impact</span><div class="divider-line"></div></div>
+<div class="content">
+  <div class="case-block">
+    <div class="impact-grid">
+      <div class="impact-card">
+        <div class="impact-icon">🏗️</div>
+        <h3>Built Ipsos Colombia's UX practice</h3>
+        <p>Defined how Ipsos Colombia would approach UX, service design, and testing across regions, reducing dependency on external vendors and establishing design as a core client offering.</p>
+      </div>
+      <div class="impact-card">
+        <div class="impact-icon">🎯</div>
+        <h3>Quality gate across all engagements</h3>
+        <p>Nothing reached the client without my review and approval, orchestrated two organizations (Ipsos + Algoritmo) end-to-end across discovery, design, and delivery.</p>
+      </div>
+      <div class="impact-card">
+        <div class="impact-icon">📚</div>
+        <h3>Capability building in design</h3>
+        <p>Trained Algoritmo's team on HCD tools and methodologies, design research, service design, blueprints, personas, UX metrics, and usability testing, unifying frameworks across teams.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- CHALLENGE -->
 <div class="divider"><span class="divider-label">The challenge</span><div class="divider-line"></div></div>
 <div class="content">
@@ -218,30 +272,6 @@
         <p class="client-industry">Technology / Retail</p>
         <p class="client-name">Samsung</p>
         <p class="client-desc">Physical experience evaluation of Samsung CDEs (Customer Experience Centers), defined research plan, reviewed findings, and presented recommendations.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- IMPACT -->
-<div class="divider"><span class="divider-label" style="color:var(--indigo);font-weight:500;">Impact</span><div class="divider-line"></div></div>
-<div class="content">
-  <div class="case-block">
-    <div class="impact-grid">
-      <div class="impact-card">
-        <div class="impact-icon">🏗️</div>
-        <h3>Built Ipsos Colombia's UX practice</h3>
-        <p>Defined how Ipsos Colombia would approach UX, service design, and testing across regions, reducing dependency on external vendors and establishing design as a core client offering.</p>
-      </div>
-      <div class="impact-card">
-        <div class="impact-icon">🎯</div>
-        <h3>Quality gate across all engagements</h3>
-        <p>Nothing reached the client without my review and approval, orchestrated two organizations (Ipsos + Algoritmo) end-to-end across discovery, design, and delivery.</p>
-      </div>
-      <div class="impact-card">
-        <div class="impact-icon">📚</div>
-        <h3>Capability building in design</h3>
-        <p>Trained Algoritmo's team on HCD tools and methodologies, design research, service design, blueprints, personas, UX metrics, and usability testing, unifying frameworks across teams.</p>
       </div>
     </div>
   </div>
@@ -285,8 +315,7 @@
               <li>Facilitated knowledge-sharing workshops aligning internal and external teams on user insights, business goals, and design outcomes</li>
               <li>Advocated for UX and service design practices within Ipsos, helping establish the discipline as part of the company's offering</li>
             </ul>
-            <img src="imgs/ipsos-2-1-training.png" alt="HCD Trainings" class="expand-img">
-            <img src="imgs/ipsos-2-2-metrics.png" alt="UX Metrics training" class="expand-img" style="margin-top:8px;">
+            <img src="imgs/ipsos-2.jpeg" alt="HCD training and capability building for Algoritmo" class="expand-img">
             <p class="expand-img-caption">Capability Building, training materials and HCD tools introduced to Algoritmo's team across the full design process.</p>
           </div>
         </div>
@@ -296,17 +325,58 @@
         <span class="did-number">3</span>
         <div class="did-content">
           <h3>Ipsos UX practice framework</h3>
-          <p>Led the development of how Ipsos Colombia would approach UX and testing projects across regions, reducing dependency on external vendors.</p>
+          <p>Led how Ipsos Colombia would approach UX, testing, and impact measurement across regions, reducing dependency on external vendors and giving every engagement a shared way to demonstrate value.</p>
           <button class="toggle-btn" onclick="toggleExpand(this)"><span class="toggle-icon">+</span> See more</button>
           <div class="did-expand">
             <ul>
               <li>Defined methodology standards for UX research and usability testing across different project types</li>
+              <li>Built a shared measurement model connecting usability metrics to business value, so every engagement could defend its impact with stakeholders</li>
               <li>Established quality criteria and approval gates for all design deliverables</li>
-              <li>Built the framework as a scalable model, designed to be replicated in other Ipsos regions</li>
+              <li>Structured the framework as a scalable model, designed to be replicated in other Ipsos regions</li>
               <li>Contributed to pre-sales planning, staffing, and project estimation</li>
             </ul>
-            <img src="imgs/ipsos-3-staffing.png" alt="Staffing and practice framework" class="expand-img">
-            <div class="img-row" style="margin-top:8px;"><img src="imgs/ipsos-3-2.png" alt="Ipsos methodology"><img src="imgs/ipsos-3-3.png" alt="Ipsos proposal"></div>
+            <img src="imgs/ipsos-3.jpeg" alt="Staffing and pre-sales collaboration" class="expand-img">
+            <p class="expand-img-caption">Staffing and pre-sales collaboration, defining team composition, project estimation, and proposals together with the commercial team.</p>
+
+            <div class="metric-model">
+              <p class="metric-model-eyebrow">Measurement model</p>
+              <h4 class="metric-model-title">From usability signal to business value</h4>
+              <p class="metric-model-intro">Every usability metric we track is a leading indicator of a business outcome. This is how I align research with stakeholder priorities, measuring what users do and translating it into the language the business decides on.</p>
+
+              <div class="metric-head">
+                <div class="metric-head-cell"><span class="h">Behavioral signal</span></div>
+                <span></span>
+                <div class="metric-head-cell"><span class="h">Usability metric</span><span class="metric-indic lead">Leading</span></div>
+                <span></span>
+                <div class="metric-head-cell"><span class="h">Business metric</span><span class="metric-indic lag">Lagging</span></div>
+              </div>
+
+              <div class="metric-row">
+                <div class="metric-chip signal"><span class="chip-kind">Signal</span>Users hesitate or drop off at a key step</div>
+                <svg class="metric-arrow" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="metric-chip usability"><span class="chip-kind">Usability · leading</span>Task success rate</div>
+                <svg class="metric-arrow" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="metric-chip business"><span class="chip-kind">Business · lagging</span>Conversion / completion</div>
+              </div>
+
+              <div class="metric-row">
+                <div class="metric-chip signal"><span class="chip-kind">Signal</span>Repeated mistakes or confusion</div>
+                <svg class="metric-arrow" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="metric-chip usability"><span class="chip-kind">Usability · leading</span>Error rate</div>
+                <svg class="metric-arrow" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="metric-chip business"><span class="chip-kind">Business · lagging</span>Support volume &amp; cost</div>
+              </div>
+
+              <div class="metric-row">
+                <div class="metric-chip signal"><span class="chip-kind">Signal</span>Friction in a recurring touchpoint</div>
+                <svg class="metric-arrow" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="metric-chip usability"><span class="chip-kind">Usability · leading</span>Satisfaction (SUS / CSAT)</div>
+                <svg class="metric-arrow" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="metric-chip business"><span class="chip-kind">Business · lagging</span>Retention &amp; NPS</div>
+              </div>
+
+              <p class="metric-foot">Leading vs. lagging indicators, drawing on Google's HEART framework. Mappings are illustrative, the specific metrics flex per project and client goals.</p>
+            </div>
           </div>
         </div>
       </div>
