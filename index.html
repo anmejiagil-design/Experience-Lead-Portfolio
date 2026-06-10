@@ -135,7 +135,7 @@
     line-height: 1.0;
     letter-spacing: -0.02em;
     color: var(--ink);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .hero-title em {
@@ -143,14 +143,48 @@
     color: var(--indigo);
   }
 
+  /* from -> to motif */
+  .hero-arc {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 2rem;
+  }
+  .hero-arc .step.dest { color: var(--indigo); }
+  .hero-arc svg { color: var(--teal); flex-shrink: 0; }
+
   .hero-sub {
     font-size: 17px;
     font-weight: 300;
     line-height: 1.75;
     color: var(--ink-muted);
-    max-width: 500px;
-    margin-bottom: 3rem;
+    max-width: 540px;
+    margin-bottom: 2rem;
   }
+
+  /* proof chips */
+  .hero-proof {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 2.75rem;
+    max-width: 760px;
+  }
+  .proof-chip {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 100px;
+    border: 0.5px solid;
+  }
+  .proof-chip.teal { background: var(--teal-light); color: var(--teal-dark); border-color: rgba(29,158,117,0.22); }
+  .proof-chip.indigo { background: var(--indigo-light); color: var(--indigo-dark); border-color: rgba(79,111,174,0.22); }
 
   .hero-meta {
     display: flex;
@@ -431,8 +465,21 @@
 <!-- HERO -->
 <section class="hero">
   <p class="hero-eyebrow">Lead Experience Designer · UX Specialist</p>
-  <h1 class="hero-title">Designing with<br><em>purpose</em> &amp; clarity.</h1>
-  <p class="hero-sub">12 years shaping digital products across automotive, finance, education, and healthcare, from strategy to delivery.</p>
+  <h1 class="hero-title">Designing how design <em>works</em>.</h1>
+  <div class="hero-arc">
+    <span class="step">Craft</span>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="step">Practice</span>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="step dest">Teams</span>
+  </div>
+  <p class="hero-sub">12 years building the UX capability, standards, and teams that organizations adopt, across automotive, finance, education, and healthcare.</p>
+  <div class="hero-proof">
+    <span class="proof-chip indigo">UX practice built 0&rarr;1</span>
+    <span class="proof-chip teal">Mentored &amp; grew designers</span>
+    <span class="proof-chip teal">Design Ops adopted studio-wide</span>
+    <span class="proof-chip teal">Quality gate across multi-org teams</span>
+  </div>
   <div class="hero-meta">
     <span class="hero-meta-item"><span class="dot"></span>Medellín, Colombia</span>
     <span class="hero-meta-item"><span class="dot"></span>Open to opportunities</span>
